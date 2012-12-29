@@ -13,7 +13,7 @@ type Message struct {
 
 func main() {
 	var m Message
-	b := []byte("{\"Name\":\"Alice\",\"Body\":\"Hello\",\"Time\":1294706395881547000}")
+	b := []byte(`{"Name":"Alice","Body":"Hello","Time":1294706395881547000}`)
 	err := json.Unmarshal(b, &m)
 	if err != nil {
 		fmt.Println("An error occured!")
