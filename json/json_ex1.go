@@ -20,6 +20,7 @@ func main() {
 		for _, i := range b {
 			fmt.Printf("%c", i)
 		}
+		fmt.Println()
 	}
 
 }
