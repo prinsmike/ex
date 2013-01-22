@@ -46,5 +46,6 @@ func main() {
 	}
 
 	fmt.Println(result)
+	fmt.Println(c.Count())
 
 }
