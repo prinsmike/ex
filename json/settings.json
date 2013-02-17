@@ -1,0 +1,6 @@
+{
+	"key": "value", // k:v
+
+	// a list of numbers
+	"list": [1, 2, 3],
+}

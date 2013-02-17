@@ -7,12 +7,14 @@ import (
 	"labix.org/v2/mgo/bson"
 	"log"
 	"os"
+	"time"
 )
 
 type Person struct {
 	Id        bson.ObjectId "_id,omitempty"
 	FirstName string        "firstName"
 	LastName  string        "lastName"
+	Date      time.Time     "date"
 }
 
 func main() {
