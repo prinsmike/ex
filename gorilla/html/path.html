@@ -1,0 +1,16 @@
+{{define "Content"}}
+
+<div>
+	Current path: {{.Path}}
+</div>
+
+<div>
+	Paths:
+	<ul>
+		{{range $v := .Paths}}
+		<li>{{$v}}</li>
+		{{end}}
+	</ul>
+</div>
+
+{{end}}
