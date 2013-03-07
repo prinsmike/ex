@@ -9,20 +9,23 @@ import (
 
 func main() {
 	r := mux.NewRouter()
-	r.HandleFunc("/", pathHandler)
-	r.HandleFunc("{*}", pathHandler)
+	//r.HandleFunc("/", pathHandler)
+	r.HandleFunc("/{path:.*}", pathHandler)
 	http.Handle("/", r)
 	http.ListenAndServe(":8080", nil)
 }
 
 func pathHandler(w http.ResponseWriter, req *http.Request) {
 	var data = make(map[string]string)
-	data["scheme"] = req.URL.Scheme
-	data["host"] = req.URL.Host
+	data["method"] = req.Method
+	data["proto"] = req.Proto
+	data["requri"] = req.RequestURI
+	data["host"] = req.Host
 	data["path"] = req.URL.Path
+	data["useragent"] = req.UserAgent()
 	templates := &Templates{[]string{
-		`{{define "Content"}}<div>Host: {{.host}}</div><div>Path: {{.path}}</div>{{end}}`,
-		`<html><head><title>{{.scheme}}://{{.host}}{{.path}}</title></head><body>{{template "Content" .}}</body></html>`,
+		`{{define "Content"}}<div>Method: {{.method}}</div><div>{{.proto}}</div><div>Host: {{.host}}</div><div>Path: {{.path}}</div><div>Request URI: {{.requri}}</div><div>UserAgent: {{.useragent}}</div>{{end}}`,
+		`<html><head><title>{{.host}}</title></head><body>{{template "Content" .}}</body></html>`,
 	}}
 	t, err := ParseTemplates(templates.T...)
 	if err != nil {
