@@ -40,6 +40,7 @@ func pathHandler(w http.ResponseWriter, req *http.Request) {
 }
 
 func noHostHandler(w http.ResponseWriter, req *http.Request) {
+	fmt.Printf("%#v", req)
 	var data = make(map[string]string)
 	data["method"] = req.Method
 	data["proto"] = req.Proto
